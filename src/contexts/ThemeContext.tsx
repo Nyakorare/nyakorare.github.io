@@ -7,6 +7,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { withThemeTransition } from "../utils/themeTransition";
 
 type Theme = "light" | "dark";
 
@@ -54,17 +55,22 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const onOsChange = () => {
       if (localStorage.getItem(STORAGE_KEY)) return;
       const next = mq.matches ? "dark" : "light";
-      setTheme(next);
-      applyDataTheme(next);
+      withThemeTransition(() => {
+        applyDataTheme(next);
+        setTheme(next);
+      });
     };
     mq.addEventListener("change", onOsChange);
     return () => mq.removeEventListener("change", onOsChange);
   }, []);
 
   const toggle = useCallback(() => {
-    setTheme((t) => {
-      const next: Theme = t === "dark" ? "light" : "dark";
-      localStorage.setItem(STORAGE_KEY, next);
+    setTheme((current) => {
+      const next: Theme = current === "dark" ? "light" : "dark";
+      withThemeTransition(() => {
+        localStorage.setItem(STORAGE_KEY, next);
+        applyDataTheme(next);
+      });
       return next;
     });
   }, []);

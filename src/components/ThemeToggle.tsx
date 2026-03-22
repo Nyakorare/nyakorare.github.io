@@ -8,7 +8,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      className="btn btn-circle btn-ghost btn-sm shrink-0 border border-base-300 text-base-content hover:border-base-content/30 hover:bg-base-200"
+      className="btn btn-3d-icon btn-circle btn-ghost btn-sm shrink-0 border border-base-300 text-base-content hover:border-base-content/30 hover:bg-base-200"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Light mode" : "Dark mode"}
     >
