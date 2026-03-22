@@ -25,19 +25,34 @@ npm run preview
 
 ## Free deploy (GitHub Pages)
 
-This repo name (`username.github.io`) publishes to `https://nyakorare.github.io/` at the site root. Vite `base` is **`./`** (relative) so `/assets/...` scripts and styles resolve correctly on GitHub Pages (including if you ever use a project URL like `…/repo-name/`).
+This repo publishes to `https://nyakorare.github.io/`. Vite `base` is **`./`** so the built bundle loads from `./assets/...`.
 
-### “MIME type application/octet-stream” / module script failed
+### Fix: `main.tsx` + “MIME type application/octet-stream”
 
-- **Do not** open `dist/index.html` with **File → Open** (`file://`). Browsers block ES modules or mis-detect MIME types. Use `npm run preview` or any local HTTP server after `npm run build`.
-- After changing `vite.config.ts` `base`, run **`npm run build`** again and redeploy so `index.html` and hashed `assets/*` files stay in sync.
-- If you deploy a **project** site at `https://<user>.github.io/<repo>/` instead of a user site, keep `base: "./"` (current setup) or set `base: "/<repo>/"` explicitly.
+If DevTools points at **`main.tsx:1`**, the live site is **not** running the production build. The **root** `index.html` is for **development** only; it loads **`/src/main.tsx`**. On GitHub Pages, `.tsx` is served as **`application/octet-stream`**, which browsers reject for `type="module"` scripts.
 
-1. Push this repo to GitHub on branch **`main`** or **`master`** (the workflow listens to both).
-2. In the repo on GitHub: **Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from a branch”).
-4. Open the **Actions** tab and confirm the **Deploy to GitHub Pages** workflow run succeeds. The site URL appears in the workflow summary and on the Pages settings page.
+**Do this:**
 
-First-time setup: GitHub may ask to approve workflow permissions once; accept **Read and write** for Pages if prompted.
+1. **Settings → Pages → Build and deployment**
+2. Set **Source** to **GitHub Actions** (not **Deploy from a branch**).
+3. If you used **Deploy from a branch** with **Folder: / (root)** (or **main** at `/`), that published the **wrong** `index.html` — the one that references `main.tsx`. Switch to **GitHub Actions** as above.
+4. Push **`main`** (or **`master`**) so `.github/workflows/deploy-pages.yml` runs. In **Actions**, open **Deploy to GitHub Pages** and confirm it **succeeds**. The live site is the **`npm run build`** output in **`dist/`**, uploaded by the workflow — not the files at the repo root.
 
-If the workflow is missing, ensure `.github/workflows/deploy-pages.yml` is committed and pushed.
+`dist` is listed in `.gitignore`; you do **not** need to commit `dist/` when using Actions.
+
+**Locally:** use **`npm run dev`** (Vite compiles TypeScript). Do not rely on **Live Server** or **File → Open** on `index.html` for the app; after a build, use **`npm run preview`**.
+
+### Other script / MIME issues
+
+- After changing `vite.config.ts` `base`, run **`npm run build`** and redeploy via Actions.
+- Try a hard refresh or a private window if an old `index.html` is cached without matching `assets/*` files.
+
+### Enable GitHub Actions deploy
+
+1. Push to **`main`** or **`master`**.
+2. **Settings → Pages → Source: GitHub Actions** (see above).
+3. **Actions** → confirm **Deploy to GitHub Pages** completes; the site URL appears on the run and under **Settings → Pages**.
+
+First-time setup: approve workflow permissions if GitHub asks; grant **Read and write** for Pages when prompted.
+
+Ensure `.github/workflows/deploy-pages.yml` is on the default branch.

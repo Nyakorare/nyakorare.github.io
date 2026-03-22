@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { useScrollHeader } from "../hooks/useScrollHeader";
+import { site } from "../site";
 
 const links = [
   { href: "#work", label: "Work" },
@@ -26,7 +27,7 @@ export function Header() {
           href="#"
           className="text-sm font-semibold tracking-tight text-base-content transition-colors hover:text-primary"
         >
-          nyakorare
+          {site.nameShort}
         </a>
         <ul className="flex list-none gap-8 p-0 m-0">
           {links.map(({ href, label }) => (

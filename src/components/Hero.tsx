@@ -1,4 +1,5 @@
 import { Reveal } from "./Reveal";
+import { site } from "../site";
 
 export function Hero() {
   return (
@@ -9,7 +10,7 @@ export function Hero() {
       <div className="max-w-xl">
         <Reveal delayMs={50}>
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-            Portfolio
+            {site.name}
           </p>
         </Reveal>
         <Reveal delayMs={120}>

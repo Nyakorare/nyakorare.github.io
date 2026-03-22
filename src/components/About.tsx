@@ -1,4 +1,5 @@
 import { Reveal } from "./Reveal";
+import { site } from "../site";
 
 const tags = ["Frontend", "UI design", "Systems", "Performance"] as const;
 
@@ -16,13 +17,14 @@ export function About() {
       <Reveal delayMs={80}>
         <div className="max-w-xl space-y-4 text-base text-base-content/70">
           <p>
-            I’m <strong className="font-semibold text-base-content">nyakorare</strong>{" "}
-            — this site is hosted on GitHub Pages. Swap this copy for your story:
-            what you build, what you care about, and how you like to work with
-            others.
+            I’m{" "}
+            <strong className="font-semibold text-base-content">{site.name}</strong>
+            — I design and build thoughtful digital experiences. This portfolio is
+            hosted on GitHub Pages; you can extend this section with your story,
+            focus areas, and how you like to collaborate.
           </p>
           <p>
-            This layout stays intentionally quiet so your work and words can stand
+            The layout stays intentionally quiet so your work and words can stand
             forward.
           </p>
           <ul
