@@ -1,4 +1,13 @@
 /** Public site / contact details */
+
+/** Hero certifications modal — optional `href` for credential links */
+export type SiteCertification = {
+  readonly title: string;
+  readonly issuer?: string;
+  readonly year?: string;
+  readonly href?: string;
+};
+
 export const site = {
   name: "Glenn R. Galbadores I",
   /** Shorter label for the nav bar */
@@ -18,6 +27,22 @@ export const site = {
   images: {
     profile: "/images/myPicture.png",
   },
+  /**
+   * Shown in the hero “Certifications” modal.
+   * Optional `href` links to a credential or issuer page.
+   */
+  certifications: [
+    {
+      title: "Microsoft Power Platform Fundamentals (PL-900)",
+      issuer: "Microsoft",
+      year: "2024",
+    },
+    {
+      title: "ISTQB Certified Tester — Foundation Level",
+      issuer: "ISTQB",
+      year: "2025",
+    },
+  ] as const,
   about: {
     roles: [
       "QA Software Specialist",

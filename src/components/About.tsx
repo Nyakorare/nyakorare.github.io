@@ -69,7 +69,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="about-section-3d relative isolate overflow-hidden border-y border-base-300 bg-base-100 py-16 lg:py-24"
+      className="about-section-3d relative isolate overflow-hidden border-y border-base-300 bg-base-100 py-12 sm:py-16 lg:py-24"
       aria-labelledby="about-heading"
     >
       <div className="about-bg-3d pointer-events-none" aria-hidden>
@@ -85,7 +85,7 @@ export function About() {
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto max-w-5xl px-0">
+      <div className="relative z-10 mx-auto w-full max-w-3xl px-0">
         <Reveal>
           <header className="mb-12 max-w-3xl border-b border-base-300/60 pb-10">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">

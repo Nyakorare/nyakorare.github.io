@@ -3,9 +3,10 @@ import { site } from "../site";
 
 type HeroProps = {
   onOpenContact: () => void;
+  onOpenCertifications: () => void;
 };
 
-export function Hero({ onOpenContact }: HeroProps) {
+export function Hero({ onOpenContact, onOpenCertifications }: HeroProps) {
   return (
     <section
       className="relative flex min-h-[min(92vh,52rem)] flex-col justify-center pb-16"
@@ -36,25 +37,34 @@ export function Hero({ onOpenContact }: HeroProps) {
             </p>
           </Reveal>
           <Reveal delayMs={280}>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="#projects"
-                className="btn btn-3d-primary rounded-full border-0 bg-base-content px-6 text-base-100 hover:bg-base-content/90"
-              >
-                View projects
-              </a>
+            <div className="mt-8 flex w-fit max-w-full flex-col gap-3">
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="#projects"
+                  className="btn btn-3d-primary rounded-full border-0 bg-base-content px-6 text-base-100 hover:bg-base-content/90"
+                >
+                  View projects
+                </a>
+                <button
+                  type="button"
+                  onClick={onOpenContact}
+                  className="btn btn-outline btn-3d-outline hero-get-in-touch inline-flex items-center gap-1.5 rounded-full border-base-300 bg-transparent px-6 hover:border-base-content/40 hover:bg-primary/10"
+                >
+                  Get in touch
+                  <span
+                    className="hero-get-in-touch-arrow text-primary"
+                    aria-hidden
+                  >
+                    →
+                  </span>
+                </button>
+              </div>
               <button
                 type="button"
-                onClick={onOpenContact}
-                className="btn btn-outline btn-3d-outline hero-get-in-touch inline-flex items-center gap-1.5 rounded-full border-base-300 bg-transparent px-6 hover:border-base-content/40 hover:bg-primary/10"
+                onClick={onOpenCertifications}
+                className="btn btn-outline btn-3d-outline inline-flex items-center gap-1.5 self-center rounded-full border-primary/35 bg-primary/5 px-6 text-primary hover:border-primary/50 hover:bg-primary/10"
               >
-                Get in touch
-                <span
-                  className="hero-get-in-touch-arrow text-primary"
-                  aria-hidden
-                >
-                  →
-                </span>
+                Certifications
               </button>
             </div>
           </Reveal>

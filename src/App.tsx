@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { About } from "./components/About";
+import { CertificationsModal } from "./components/CertificationsModal";
 import { ContactModal } from "./components/Contact";
 import { Experience } from "./components/Experience";
 import { Footer } from "./components/Footer";
@@ -9,6 +10,7 @@ import { Projects } from "./components/Projects";
 
 export default function App() {
   const [contactOpen, setContactOpen] = useState(false);
+  const [certificationsOpen, setCertificationsOpen] = useState(false);
 
   return (
     <>
@@ -23,9 +25,16 @@ export default function App() {
         open={contactOpen}
         onClose={() => setContactOpen(false)}
       />
+      <CertificationsModal
+        open={certificationsOpen}
+        onClose={() => setCertificationsOpen(false)}
+      />
       <main id="main" className="portfolio-scene pt-28 sm:pt-[4.25rem]">
         <div className="mx-auto max-w-content px-6 lg:px-10">
-          <Hero onOpenContact={() => setContactOpen(true)} />
+          <Hero
+            onOpenContact={() => setContactOpen(true)}
+            onOpenCertifications={() => setCertificationsOpen(true)}
+          />
           <Projects />
           <Experience />
           <About />

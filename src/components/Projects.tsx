@@ -55,20 +55,7 @@ export function Projects() {
             Projects
           </h2>
           <p className="mt-2 text-base text-base-content/70">
-            Selected work and experiments — Roblox profile:{" "}
-            <a
-              href={site.robloxProfileUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-primary underline decoration-primary/30 underline-offset-2 transition-colors hover:decoration-primary"
-            >
-              Nyakorare
-            </a>
-            . Edit listings in{" "}
-            <code className="rounded bg-base-200 px-1.5 py-0.5 text-sm text-base-content/80">
-              src/site.ts
-            </code>
-            .
+            Works and experiments
           </p>
         </div>
       </Reveal>
