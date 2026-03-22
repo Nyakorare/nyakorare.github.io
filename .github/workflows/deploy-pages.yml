@@ -3,7 +3,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main, master]
+    # Deploy built `dist/` on pushes to these branches (requires Pages → GitHub Actions).
+    branches: [main, master, dev]
   workflow_dispatch:
 
 permissions:
