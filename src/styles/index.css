@@ -11,7 +11,8 @@
   }
 
   #projects,
-  #experience {
+  #experience,
+  #about {
     scroll-margin-top: 5rem;
   }
 
@@ -56,4 +57,114 @@
   .hero-scroll-line {
     animation: none;
   }
+}
+
+/* About: skill chips */
+@keyframes chip-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chip-animate {
+  animation: chip-reveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+.chip-hover {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .chip-hover:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip-animate {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* About: role pills under photo */
+@keyframes role-fade {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.role-pill {
+  animation: role-fade 0.55s ease forwards;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .role-pill {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* About: soft background blobs */
+@keyframes about-blob {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate(14px, -10px) scale(1.06);
+    opacity: 0.85;
+  }
+}
+
+@keyframes about-blob-alt {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate(-18px, 12px) scale(1.08);
+    opacity: 0.75;
+  }
+}
+
+.animate-about-blob {
+  animation: about-blob 20s ease-in-out infinite;
+}
+
+.animate-about-blob-alt {
+  animation: about-blob-alt 26s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-about-blob,
+  .animate-about-blob-alt {
+    animation: none;
+    opacity: 0.35;
+  }
+}
+
+/* Experience: logo ring pulse on hover (group-hover handled in component) */
+.exp-logo-ring {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
