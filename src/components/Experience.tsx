@@ -18,7 +18,7 @@ export function Experience() {
           <div className="mb-10 max-w-lg sm:mb-12">
             <h2
               id="experience-heading"
-              className="font-display text-3xl font-medium tracking-[-0.02em] sm:text-4xl"
+              className="section-heading-3d font-display text-3xl font-medium tracking-[-0.02em] sm:text-4xl"
             >
               Experience
             </h2>
@@ -32,7 +32,7 @@ export function Experience() {
           {site.experience.map((job, i) => (
             <li key={`${job.company}-${i}`}>
               <Reveal delayMs={i * 75}>
-                <article className="experience-card group relative overflow-hidden rounded-2xl border border-base-300/90 bg-base-100/75 p-5 shadow-md backdrop-blur-sm transition-all duration-300 ease-out sm:p-6 motion-safe:hover:-translate-y-1 motion-safe:hover:border-primary/40 motion-safe:hover:shadow-xl">
+                <article className="experience-card elev-panel-soft elev-panel-glass elev-panel-lift group relative overflow-hidden rounded-2xl border border-base-300/90 p-5 sm:p-6">
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/[0.07] via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                   <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-6">

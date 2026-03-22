@@ -10,13 +10,17 @@ const links = [
   { href: "#contact", label: "Contact" },
 ] as const;
 
-export function Header() {
+type HeaderProps = {
+  onOpenContact: () => void;
+};
+
+export function Header({ onOpenContact }: HeaderProps) {
   const scrolled = useScrollHeader();
 
   return (
     <header
       className={clsx(
-        "fixed top-0 z-50 w-full transition-[border-color,background-color] duration-300",
+        "header-3d fixed top-0 z-50 w-full transition-[border-color,background-color] duration-300",
         "bg-base-100/75 backdrop-blur-md",
         scrolled && "border-b border-base-300"
       )}
@@ -35,16 +39,30 @@ export function Header() {
           <ul className="flex flex-1 list-none flex-wrap justify-end gap-x-4 gap-y-1 p-0 m-0 sm:gap-x-6 md:gap-x-8">
             {links.map(({ href, label }) => (
               <li key={href}>
-                <a
-                  href={href}
-                  className="group relative text-sm font-medium text-base-content/60 transition-colors hover:text-base-content"
-                >
-                  {label}
-                  <span
-                    className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-primary transition-transform duration-300 ease-out group-hover:scale-x-100"
-                    aria-hidden
-                  />
-                </a>
+                {href === "#contact" ? (
+                  <button
+                    type="button"
+                    onClick={onOpenContact}
+                    className="group relative cursor-pointer border-0 bg-transparent p-0 text-sm font-medium text-base-content/60 transition-colors hover:text-base-content"
+                  >
+                    {label}
+                    <span
+                      className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-primary transition-transform duration-300 ease-out group-hover:scale-x-100"
+                      aria-hidden
+                    />
+                  </button>
+                ) : (
+                  <a
+                    href={href}
+                    className="group relative text-sm font-medium text-base-content/60 transition-colors hover:text-base-content"
+                  >
+                    {label}
+                    <span
+                      className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-primary transition-transform duration-300 ease-out group-hover:scale-x-100"
+                      aria-hidden
+                    />
+                  </a>
+                )}
               </li>
             ))}
           </ul>

@@ -10,6 +10,8 @@ export const site = {
     "galbag12004@gmail.com",
   ] as const,
   githubUrl: "https://github.com/nyakorare",
+  /** Roblox profile — games, favorites, and creations */
+  robloxProfileUrl: "https://www.roblox.com/users/86242661/profile",
   /** UptimeRobot public status page (linked from Projects — cannot be iframed) */
   uptimeStatusUrl: "https://stats.uptimerobot.com/JyYATn0Zv8",
   /** Paths under public/ — served at /images/... */
@@ -92,63 +94,95 @@ export const site = {
       image: "/images/TUPGear.jpg",
     },
   ],
-  /** Featured work — edit titles, links, and tags anytime */
+  /**
+   * Featured work — optional `image` shows a cover on the card.
+   * Roblox game art uses Roblox CDN URLs (may need refresh if a link expires).
+   */
   projects: [
     {
       title: "GuestGo",
       description:
-        "Thesis system integration for a custom trained Face Detection AI",
+        "Thesis project: visitor management with a custom-trained face-detection model (YOLOv8) and a full-stack web app.",
       meta: "Web · 2025",
       href: "https://guest-go.vercel.app/",
       secondaryHref: "https://guestgo-ai.onrender.com/",
       label: "GuestGo web app (opens in new tab)",
       secondaryLabel: "GuestGo API backend (opens in new tab)",
       tags: ["Vite", "Tailwind", "Python", "YOLOv8", "AI", "API"],
+      image: "/images/guestgo-logo-no_word.png",
     },
     {
       title: "ScorpBot AI",
       description:
-        "AI CHATBOT for CEU-Manila",
-      meta: "Code",
+        "Campus assistant chatbot for CEU Manila — conversational UI backed by Gemini.",
+      meta: "Web · 2025",
       href: "https://scorpbot.onrender.com/",
-      label: "CEU ScorpBot AI (opens in new tab)",
-      tags: ["GEMINI", "AI"],
+      label: "ScorpBot AI (opens in new tab)",
+      tags: ["Gemini", "AI"],
+      image: "/images/scorpbot.png",
     },
     {
-      title: "PH MANGO AI",
+      title: "PH Mango AI",
       description:
-        "Replace with a real project: link the live demo or repo and update this copy.",
+        "Computer vision demo: Philippine mango varieties, live detection, and fresh vs rotten classification with a running counter.",
       meta: "App · 2024",
       href: "#projects",
-      label: "Placeholder project",
-      tags: ["UI", "Product"],
+      label: "PH Mango AI — details on this page",
+      tags: ["Python", "OpenCV", "AI"],
+      image: "/images/mango.jpg",
     },
     {
       title: "SmaRM",
       description:
-        "Example slot for a second internal or client project — swap title, link, and tags.",
-      meta: "Design · 2024",
-      href: "#projects",
-      label: "Design system notes",
-      tags: ["Design", "Docs"],
+        "Smart room reservation with role-based access — scheduling and approvals for shared spaces.",
+      meta: "Web · 2024",
+      href: "https://smarm.kesug.com/",
+      label: "SmaRM — details on this page",
+      tags: ["PHP", "MySQL"],
+      image: "/images/Smarm.png",
     },
     {
       title: "ADOMee$",
       description:
-        "Placeholder for a backend or API-focused project (REST, GraphQL, serverless).",
-      meta: "Backend · 2024",
-      href: "#projects",
-      label: "API experiment",
-      tags: ["Node", "API"],
+        "Role-based document management: upload, organize, and control who can view or edit files.",
+      meta: "Web · 2024",
+      href: "https://github.com/Nyakorare/ADOMEES",
+      label: "ADOMee$ — details on this page",
+      tags: ["Open Source","PHP", "MySQL"],
+      image: "/images/adomees.png",
     },
     {
-      title: "ROBLOX GAMES",
+      title: "Ani Games",
       description:
-        "Placeholder for a mobile or responsive PWA — link a store listing or demo when ready.",
-      meta: "Mobile · 2023",
-      href: "#projects",
-      label: "Mobile concept",
-      tags: ["PWA", "UI"],
+        "Anime-inspired Roblox minigames — small experiences built in Studio with Luau.",
+      meta: "Roblox · Luau",
+      href: "https://www.roblox.com/games/18213261903/Ani-Games",
+      label: "Ani Games on Roblox (opens in new tab)",
+      tags: ["Roblox", "Luau"],
+      image:
+        "https://tr.rbxcdn.com/180DAY-d9d162ba0cce32e2308d022aa2de077b/512/512/Image/Png/noFilter",
+    },
+    {
+      title: "Radix Sort visualization",
+      description:
+        "Interactive Roblox place that walks through a radix sort — built as a school algorithm project.",
+      meta: "Roblox · Education",
+      href: "https://www.roblox.com/games/17480130158/Radix-Sort-Algorithm-Visualization",
+      label: "Radix Sort visualization on Roblox (opens in new tab)",
+      tags: ["Roblox", "Algorithms"],
+      image:
+        "https://tr.rbxcdn.com/180DAY-7d1924cf5f61541e4efa073691b20ddb/512/512/Image/Png/noFilter",
+    },
+    {
+      title: "Classic Minigames",
+      description:
+        "Lobby of varied minigames — older project (discontinued) with a large minigame roster and ongoing experiments.",
+      meta: "Roblox · Minigames",
+      href: "https://www.roblox.com/games/3103901140/Classic-Minigames",
+      label: "Classic Minigames on Roblox (opens in new tab)",
+      tags: ["Roblox", "Luau"],
+      image:
+        "https://tr.rbxcdn.com/180DAY-557f41cbc502caef57cb234096a3635e/512/512/Image/Png/noFilter",
     },
   ],
 } as const;
