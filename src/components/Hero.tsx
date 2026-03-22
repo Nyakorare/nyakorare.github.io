@@ -4,7 +4,7 @@ import { site } from "../site";
 export function Hero() {
   return (
     <section
-      className="relative flex min-h-[min(92vh,52rem)] flex-col justify-center pb-16 pt-[4.25rem]"
+      className="relative flex min-h-[min(92vh,52rem)] flex-col justify-center pb-16"
       aria-labelledby="hero-heading"
     >
       <div className="max-w-xl">

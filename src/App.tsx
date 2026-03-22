@@ -4,11 +4,8 @@ import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { Projects } from "./components/Projects";
-import { useThemeFromOs } from "./hooks/useThemeFromOs";
 
 export default function App() {
-  useThemeFromOs();
-
   return (
     <>
       <a
@@ -18,7 +15,7 @@ export default function App() {
         Skip to content
       </a>
       <Header />
-      <main id="main" className="pt-[4.25rem]">
+      <main id="main" className="pt-28 sm:pt-[4.25rem]">
         <div className="mx-auto max-w-content px-6 lg:px-10">
           <Hero />
           <Projects />

@@ -39,5 +39,32 @@ export const site = {
       label: "Placeholder project",
       tags: ["UI", "Product"],
     },
+    {
+      title: "Design system notes",
+      description:
+        "Example slot for a second internal or client project — swap title, link, and tags.",
+      meta: "Design · 2024",
+      href: "#projects",
+      label: "Design system notes",
+      tags: ["Design", "Docs"],
+    },
+    {
+      title: "API experiment",
+      description:
+        "Placeholder for a backend or API-focused project (REST, GraphQL, serverless).",
+      meta: "Backend · 2024",
+      href: "#projects",
+      label: "API experiment",
+      tags: ["Node", "API"],
+    },
+    {
+      title: "Mobile concept",
+      description:
+        "Placeholder for a mobile or responsive PWA — link a store listing or demo when ready.",
+      meta: "Mobile · 2023",
+      href: "#projects",
+      label: "Mobile concept",
+      tags: ["PWA", "UI"],
+    },
   ],
 } as const;
