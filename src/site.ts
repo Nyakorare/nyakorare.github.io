@@ -27,20 +27,58 @@ export const site = {
   images: {
     profile: "/images/myPicture.png",
   },
+  /** Education — school and milestone */
+  education: {
+    school: "Technological University of the Philippines – Manila",
+    program: "Computer Science",
+    dateLabel: "August 2026",
+    logo: "/images/tup.png",
+  } as const,
   /**
    * Shown in the hero “Certifications” modal.
    * Optional `href` links to a credential or issuer page.
    */
   certifications: [
+    { title: "CSC – Professional", issuer: "CSC" },
     {
-      title: "Microsoft Power Platform Fundamentals (PL-900)",
-      issuer: "Microsoft",
-      year: "2024",
+      title:
+        "Business Intelligence with Power BI Querying Fundamentals with MySQL",
+      issuer: "Data Analytics Philippines",
     },
     {
-      title: "ISTQB Certified Tester — Foundation Level",
-      issuer: "ISTQB",
-      year: "2025",
+      title:
+        "Building Generative AI-Powered Applications in Java TESDA [AI900] - Microsoft Azure AI Fundamentals",
+      issuer: "TESDA · Microsoft",
+    },
+    {
+      title: "Cybersecurity Fundamentals",
+      issuer: "IBM · TESDA",
+      href: "https://www.credly.com/badges/f29597b6-fcee-443b-b430-97873e9b7a48",
+    },
+    {
+      title: "Cloud Computing Fundamentals",
+      issuer: "IBM · TESDA",
+      href: "https://www.credly.com/badges/1c672da5-8157-4217-b2ce-07914db5cc46",
+    },
+    {
+      title: "Artificial Intelligence Fundamentals",
+      issuer: "IBM · TESDA",
+      href: "https://www.credly.com/badges/ee49cb18-cac3-43c8-9030-b15fea91ad28",
+    },
+    {
+      title: "Information Technology Fundamentals",
+      issuer: "IBM · TESDA",
+      href: "https://www.credly.com/badges/f09efb4c-1ccf-4ef9-b1d8-ca48f0522fc1",
+    },
+    {
+      title: "Web Development Fundamentals",
+      issuer: "IBM · TESDA",
+      href: "https://www.credly.com/badges/4b9c35bd-b1da-44bc-93e4-394170e5c49b",
+    },
+    {
+      title: "Quantum Computing and Blockchain Lecture Series",
+      issuer: "Quantum Computing Society of the Philippines",
+      href: "https://verified.sertifier.com/en/verify/61183648067852/",
     },
   ] as const,
   about: {
@@ -80,7 +118,7 @@ export const site = {
       "Figma",
       "Canva",
       "Pop!_OS & Fedora Linux",
-      "Excel",
+      "Redmine",
       "Google Colab",
       "Kaggle Notebook",
     ],
@@ -102,7 +140,7 @@ export const site = {
       role: "Intern",
       dateRange: "Jan 12, 2026 – Present",
       duration: "2 months",
-      image: "/images/meralco.webp",
+      image: "/images/meralco.png",
     },
     {
       company: "Sandman Software Systems Inc.",
@@ -163,7 +201,7 @@ export const site = {
       meta: "Web · 2024",
       href: "https://smarm.kesug.com/",
       label: "SmaRM — details on this page",
-      tags: ["PHP", "MySQL"],
+      tags: ["Open Source","PHP", "MySQL"],
       image: "/images/Smarm.png",
     },
     {

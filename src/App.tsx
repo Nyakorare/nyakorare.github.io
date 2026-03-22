@@ -2,6 +2,7 @@ import { useState } from "react";
 import { About } from "./components/About";
 import { CertificationsModal } from "./components/CertificationsModal";
 import { ContactModal } from "./components/Contact";
+import { Education } from "./components/Education";
 import { Experience } from "./components/Experience";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
@@ -37,6 +38,7 @@ export default function App() {
           />
           <Projects />
           <Experience />
+          <Education />
           <About />
           <Footer />
         </div>

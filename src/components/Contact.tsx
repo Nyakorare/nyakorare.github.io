@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import type { ReactNode } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { site } from "../site";
 
 function LinkRow({ href, children }: { href: string; children: ReactNode }) {
@@ -21,6 +22,7 @@ export type ContactModalProps = {
 
 export function ContactModal({ open, onClose }: ContactModalProps) {
   const ref = useRef<HTMLDialogElement>(null);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const el = ref.current;
@@ -42,14 +44,50 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
     return () => el.removeEventListener("close", syncParent);
   }, [onClose]);
 
+  const panelVariants = {
+    closed: reduceMotion
+      ? { opacity: 0 }
+      : {
+          opacity: 0,
+          rotateX: 20,
+          rotateY: -16,
+          scale: 0.86,
+          y: 48,
+        },
+    open: {
+      opacity: 1,
+      rotateX: 0,
+      rotateY: 0,
+      scale: 1,
+      y: 0,
+    },
+  };
+
   return (
     <dialog
       ref={ref}
-      className="modal modal-bottom sm:modal-middle z-[110]"
+      className="modal modal-bottom sm:modal-middle z-[110] [perspective:1400px]"
       aria-labelledby="contact-modal-title"
       aria-modal="true"
     >
-      <div className="modal-box modal-box-3d relative max-w-xl border border-base-300 bg-base-100 p-6 pt-10 sm:p-8 sm:pt-12">
+      <motion.div
+        className="modal-box modal-box-3d relative max-w-xl border border-base-300 bg-base-100 p-6 pt-10 sm:p-8 sm:pt-12"
+        style={{ transformStyle: "preserve-3d" }}
+        variants={panelVariants}
+        initial="closed"
+        animate={open ? "open" : "closed"}
+        transition={
+          reduceMotion
+            ? { duration: 0.12 }
+            : {
+                type: "spring",
+                stiffness: 340,
+                damping: 30,
+                mass: 0.65,
+                opacity: { duration: 0.28, ease: [0.22, 1, 0.36, 1] },
+              }
+        }
+      >
         <form method="dialog" className="absolute right-3 top-3 z-10 sm:right-4 sm:top-4">
           <button
             type="submit"
@@ -87,7 +125,7 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
             <span className="absolute bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:origin-left group-hover:scale-x-100" />
           </a>
         </div>
-      </div>
+      </motion.div>
       <form method="dialog" className="modal-backdrop">
         <button type="submit" className="cursor-default" aria-label="Close">
           &nbsp;

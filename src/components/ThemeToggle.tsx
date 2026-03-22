@@ -8,12 +8,15 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      className="btn btn-3d-icon btn-circle btn-ghost btn-sm shrink-0 border border-base-300 text-base-content hover:border-base-content/30 hover:bg-base-200"
+      className="group btn btn-3d-icon btn-circle btn-ghost btn-sm shrink-0 border border-base-300 text-base-content transition-colors duration-300 motion-safe:transition-[transform,box-shadow] motion-safe:duration-300 hover:border-primary/45 hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/20 motion-safe:hover:scale-105"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Light mode" : "Dark mode"}
     >
       {isDark ? (
-        <span className="block h-[1.125rem] w-[1.125rem]" aria-hidden>
+        <span
+          className="block h-[1.125rem] w-[1.125rem] transition-transform duration-300 ease-out will-change-transform motion-safe:group-hover:scale-110 motion-safe:group-hover:-rotate-12"
+          aria-hidden
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -24,7 +27,10 @@ export function ThemeToggle() {
           </svg>
         </span>
       ) : (
-        <span className="block h-[1.125rem] w-[1.125rem]" aria-hidden>
+        <span
+          className="block h-[1.125rem] w-[1.125rem] transition-transform duration-300 ease-out will-change-transform motion-safe:group-hover:scale-110 motion-safe:group-hover:rotate-12"
+          aria-hidden
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
