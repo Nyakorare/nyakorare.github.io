@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build && node scripts/write-nojekyll.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy:docs": "npm run build && node scripts/sync-docs.mjs"
   },
   "dependencies": {
     "animate.css": "^4.1.1",
