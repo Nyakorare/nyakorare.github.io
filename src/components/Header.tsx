@@ -3,7 +3,7 @@ import { useScrollHeader } from "../hooks/useScrollHeader";
 import { site } from "../site";
 
 const links = [
-  { href: "#work", label: "Work" },
+  { href: "#projects", label: "Projects" },
   { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
 ] as const;

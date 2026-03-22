@@ -3,7 +3,7 @@ import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
-import { ProjectGrid } from "./components/ProjectGrid";
+import { Projects } from "./components/Projects";
 import { useThemeFromOs } from "./hooks/useThemeFromOs";
 
 export default function App() {
@@ -21,7 +21,7 @@ export default function App() {
       <main id="main" className="pt-[4.25rem]">
         <div className="mx-auto max-w-content px-6 lg:px-10">
           <Hero />
-          <ProjectGrid />
+          <Projects />
           <About />
           <Contact />
           <Footer />

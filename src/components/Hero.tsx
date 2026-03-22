@@ -32,8 +32,8 @@ export function Hero() {
         </Reveal>
         <Reveal delayMs={280}>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#work" className="btn rounded-full border-0 bg-base-content px-6 text-base-100 hover:bg-base-content/90">
-              View work
+            <a href="#projects" className="btn rounded-full border-0 bg-base-content px-6 text-base-100 hover:bg-base-content/90">
+              View projects
             </a>
             <a
               href="#contact"
