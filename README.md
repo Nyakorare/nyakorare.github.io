@@ -25,7 +25,13 @@ npm run preview
 
 ## Free deploy (GitHub Pages)
 
-This repo name (`username.github.io`) publishes to `https://nyakorare.github.io/` at the site root, so Vite `base` is set to `/`.
+This repo name (`username.github.io`) publishes to `https://nyakorare.github.io/` at the site root. Vite `base` is **`./`** (relative) so `/assets/...` scripts and styles resolve correctly on GitHub Pages (including if you ever use a project URL like `…/repo-name/`).
+
+### “MIME type application/octet-stream” / module script failed
+
+- **Do not** open `dist/index.html` with **File → Open** (`file://`). Browsers block ES modules or mis-detect MIME types. Use `npm run preview` or any local HTTP server after `npm run build`.
+- After changing `vite.config.ts` `base`, run **`npm run build`** again and redeploy so `index.html` and hashed `assets/*` files stay in sync.
+- If you deploy a **project** site at `https://<user>.github.io/<repo>/` instead of a user site, keep `base: "./"` (current setup) or set `base: "/<repo>/"` explicitly.
 
 1. Push this repo to GitHub on branch **`main`** or **`master`** (the workflow listens to both).
 2. In the repo on GitHub: **Settings → Pages**.
