@@ -10,6 +10,27 @@ export const site = {
     "galbag12004@gmail.com",
   ] as const,
   githubUrl: "https://github.com/nyakorare",
+  /** Work history — newest first */
+  experience: [
+    {
+      company: "Meralco",
+      role: "Intern",
+      dateRange: "Jan 12, 2026 – Present",
+      duration: "2 months",
+    },
+    {
+      company: "Sandman Software Systems Inc.",
+      role: "Jr Quality Assurance Specialist Intern",
+      dateRange: "Aug 26, 2025 – Nov 2025",
+      duration: "2 months",
+    },
+    {
+      company: "TUP GEAR",
+      role: "Developer Associate Officer",
+      dateRange: "Sep 2024 – 2025",
+      duration: "4 months",
+    },
+  ],
   /** Featured work — edit titles, links, and tags anytime */
   projects: [
     {

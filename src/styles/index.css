@@ -10,7 +10,8 @@
     scroll-padding-top: 5rem;
   }
 
-  #projects {
+  #projects,
+  #experience {
     scroll-margin-top: 5rem;
   }
 
