@@ -137,7 +137,7 @@ export const site = {
   experience: [
     {
       company: "Meralco",
-      role: "Intern",
+      role: "IT Intern",
       dateRange: "Jan 12, 2026 – Present",
       duration: "2 months",
       image: "/images/meralco.png",
@@ -175,7 +175,7 @@ export const site = {
       image: "/images/guestgo-logo-no_word.png",
     },
     {
-      title: "ScorpBot AI",
+      title: "ScorpBot",
       description:
         "Campus assistant chatbot for CEU Manila — conversational UI backed by Gemini.",
       meta: "Web · 2025",
@@ -215,37 +215,50 @@ export const site = {
       image: "/images/adomees.png",
     },
     {
-      title: "Ani Games",
+      title: "Roblox Projects",
       description:
-        "Anime-inspired Roblox minigames — small experiences built in Studio with Luau.",
+        "Collection of my Roblox experiences. Open this card to browse each project one by one.",
       meta: "Roblox · Luau",
-      href: "https://www.roblox.com/games/18213261903/Ani-Games",
-      label: "Ani Games on Roblox (opens in new tab)",
-      tags: ["Roblox", "Luau"],
+      href: "#projects",
+      label: "Roblox projects — details on this page",
+      tags: ["Roblox", "Luau", "Minigames"],
       image:
-        "https://tr.rbxcdn.com/180DAY-d9d162ba0cce32e2308d022aa2de077b/512/512/Image/Png/noFilter",
-    },
-    {
-      title: "Radix Sort visualization",
-      description:
-        "Interactive Roblox place that walks through a radix sort — built as a school algorithm project.",
-      meta: "Roblox · Education",
-      href: "https://www.roblox.com/games/17480130158/Radix-Sort-Algorithm-Visualization",
-      label: "Radix Sort visualization on Roblox (opens in new tab)",
-      tags: ["Roblox", "Algorithms"],
-      image:
-        "https://tr.rbxcdn.com/180DAY-7d1924cf5f61541e4efa073691b20ddb/512/512/Image/Png/noFilter",
-    },
-    {
-      title: "Classic Minigames",
-      description:
-        "Lobby of varied minigames — older project (discontinued) with a large minigame roster and ongoing experiments.",
-      meta: "Roblox · Minigames",
-      href: "https://www.roblox.com/games/3103901140/Classic-Minigames",
-      label: "Classic Minigames on Roblox (opens in new tab)",
-      tags: ["Roblox", "Luau"],
-      image:
-        "https://tr.rbxcdn.com/180DAY-557f41cbc502caef57cb234096a3635e/512/512/Image/Png/noFilter",
+        "/images/Roblox.png",
+      subProjects: [
+        {
+          title: "Ani Games",
+          description:
+            "Anime-inspired Roblox minigames — small experiences built in Studio with Luau.",
+          meta: "Roblox · Luau",
+          href: "https://www.roblox.com/games/18213261903/Ani-Games",
+          label: "Ani Games on Roblox (opens in new tab)",
+          tags: ["Roblox", "Luau"],
+          image:
+            "https://tr.rbxcdn.com/180DAY-d9d162ba0cce32e2308d022aa2de077b/512/512/Image/Png/noFilter",
+        },
+        {
+          title: "Radix Sort visualization",
+          description:
+            "Interactive Roblox place that walks through a radix sort — built as a school algorithm project.",
+          meta: "Roblox · Education",
+          href: "https://www.roblox.com/games/17480130158/Radix-Sort-Algorithm-Visualization",
+          label: "Radix Sort visualization on Roblox (opens in new tab)",
+          tags: ["Roblox", "Algorithms"],
+          image:
+            "https://tr.rbxcdn.com/180DAY-7d1924cf5f61541e4efa073691b20ddb/512/512/Image/Png/noFilter",
+        },
+        {
+          title: "Classic Minigames",
+          description:
+            "Lobby of varied minigames — older project (discontinued) with a large minigame roster and ongoing experiments.",
+          meta: "Roblox · Minigames",
+          href: "https://www.roblox.com/games/3103901140/Classic-Minigames",
+          label: "Classic Minigames on Roblox (opens in new tab)",
+          tags: ["Roblox", "Luau"],
+          image:
+            "https://tr.rbxcdn.com/180DAY-557f41cbc502caef57cb234096a3635e/512/512/Image/Png/noFilter",
+        },
+      ],
     },
   ],
 } as const;

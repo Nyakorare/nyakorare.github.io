@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { site } from "../site";
 
 export type SiteProject = (typeof site.projects)[number];
@@ -12,8 +12,30 @@ function isExternalHref(href: string): boolean {
   return href.startsWith("http://") || href.startsWith("https://");
 }
 
+type ProjectItem = {
+  readonly title: string;
+  readonly description: string;
+  readonly meta: string;
+  readonly href: string;
+  readonly tags?: readonly string[];
+  readonly image?: string;
+};
+
 export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps) {
   const ref = useRef<HTMLDialogElement>(null);
+  const [subProjectIndex, setSubProjectIndex] = useState(0);
+
+  const hasSubProjects =
+    "subProjects" in project &&
+    Array.isArray(project.subProjects) &&
+    project.subProjects.length > 0;
+
+  const activeProject = useMemo<ProjectItem>(() => {
+    if (hasSubProjects) {
+      return project.subProjects[subProjectIndex] as ProjectItem;
+    }
+    return project as ProjectItem;
+  }, [hasSubProjects, project, subProjectIndex]);
 
   useEffect(() => {
     const el = ref.current;
@@ -31,15 +53,23 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
     return () => el.removeEventListener("close", sync);
   }, [onClose]);
 
+  useEffect(() => {
+    setSubProjectIndex(0);
+  }, [project]);
+
   const hasCover =
-    "image" in project &&
-    typeof project.image === "string" &&
-    project.image.length > 0;
+    typeof activeProject.image === "string" && activeProject.image.length > 0;
   const hasSecondary =
     "secondaryHref" in project &&
     typeof project.secondaryHref === "string" &&
     project.secondaryHref.length > 0;
-  const external = isExternalHref(project.href);
+  const external = isExternalHref(activeProject.href);
+  const canPrev = hasSubProjects && subProjectIndex > 0;
+  const canNext =
+    hasSubProjects &&
+    "subProjects" in project &&
+    Array.isArray(project.subProjects) &&
+    subProjectIndex < project.subProjects.length - 1;
 
   return (
     <dialog
@@ -67,7 +97,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
               <div className="relative overflow-hidden rounded-xl bg-base-200/30">
                 <div className="aspect-[16/9] w-full sm:aspect-[2/1]">
                   <img
-                    src={project.image}
+                    src={activeProject.image}
                     alt=""
                     className="h-full w-full object-cover object-center"
                   />
@@ -82,24 +112,24 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
         ) : null}
 
         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
-          {project.meta}
+          {activeProject.meta}
         </p>
         <h2
           id="project-detail-title"
           className="mt-1 font-display text-2xl font-medium tracking-[-0.02em] sm:text-3xl"
         >
-          {project.title}
+          {activeProject.title}
         </h2>
         <p className="mt-4 text-base leading-relaxed text-base-content/80">
-          {project.description}
+          {activeProject.description}
         </p>
 
-        {"tags" in project && project.tags && project.tags.length > 0 ? (
+        {activeProject.tags && activeProject.tags.length > 0 ? (
           <ul
             className="mt-5 flex list-none flex-wrap gap-1.5 p-0"
             aria-label="Technologies"
           >
-            {project.tags.map((t) => (
+            {activeProject.tags.map((t) => (
               <li
                 key={t}
                 className="rounded-full bg-base-200 px-2.5 py-1 text-xs font-medium text-base-content/85"
@@ -108,6 +138,34 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
               </li>
             ))}
           </ul>
+        ) : null}
+
+        {hasSubProjects ? (
+          <div className="mt-5 flex items-center justify-between gap-2 rounded-xl border border-base-300/70 bg-base-200/40 p-2">
+            <button
+              type="button"
+              className="btn btn-sm btn-3d-outline rounded-full border-base-300 bg-base-100 px-4"
+              onClick={() => setSubProjectIndex((i) => i - 1)}
+              disabled={!canPrev}
+              aria-disabled={!canPrev}
+            >
+              Previous
+            </button>
+            <p className="text-xs font-medium text-base-content/70">
+              {"subProjects" in project && Array.isArray(project.subProjects)
+                ? `Project ${subProjectIndex + 1} of ${project.subProjects.length}`
+                : null}
+            </p>
+            <button
+              type="button"
+              className="btn btn-sm btn-3d-outline rounded-full border-base-300 bg-base-100 px-4"
+              onClick={() => setSubProjectIndex((i) => i + 1)}
+              disabled={!canNext}
+              aria-disabled={!canNext}
+            >
+              Next
+            </button>
+          </div>
         ) : null}
 
         <div className="modal-action mt-6 flex-wrap justify-start gap-2 p-0">
@@ -132,7 +190,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
             </>
           ) : (
             <a
-              href={project.href}
+              href={activeProject.href}
               className={
                 external
                   ? "btn btn-3d-primary rounded-full border-0 bg-base-content text-base-100 hover:bg-base-content/90"
