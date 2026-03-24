@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Reveal } from "./Reveal";
 import { site } from "../site";
+import { AboutThreeBackground } from "./AboutThreeBackground";
 
 function ChipList({
   items,
@@ -72,6 +73,7 @@ export function About() {
       className="about-section-3d relative isolate overflow-hidden border-y border-base-300 bg-base-100 py-12 sm:py-16 lg:py-24"
       aria-labelledby="about-heading"
     >
+      <AboutThreeBackground />
       <div className="about-bg-3d pointer-events-none" aria-hidden>
         <div className="about-3d-perspective">
           <div className="about-3d-floor" />

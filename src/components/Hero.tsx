@@ -1,5 +1,6 @@
 import { Reveal } from "./Reveal";
 import { site } from "../site";
+import { HeroThreeBackground } from "./HeroThreeBackground";
 
 type HeroProps = {
   onOpenContact: () => void;
@@ -12,7 +13,8 @@ export function Hero({ onOpenContact, onOpenCertifications }: HeroProps) {
       className="relative flex min-h-[min(92vh,52rem)] flex-col justify-center pb-16"
       aria-labelledby="hero-heading"
     >
-      <div className="grid w-full max-w-5xl gap-10 lg:grid-cols-[1fr_minmax(0,22rem)] lg:items-center lg:gap-12 xl:grid-cols-[1fr_minmax(0,26rem)]">
+      <HeroThreeBackground />
+      <div className="relative z-10 grid w-full max-w-5xl gap-10 lg:grid-cols-[1fr_minmax(0,22rem)] lg:items-center lg:gap-12 xl:grid-cols-[1fr_minmax(0,26rem)]">
         <div className="max-w-xl">
           <Reveal delayMs={50}>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
@@ -80,7 +82,7 @@ export function Hero({ onOpenContact, onOpenCertifications }: HeroProps) {
         </Reveal>
       </div>
       <div
-        className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 opacity-40"
+        className="pointer-events-none absolute bottom-8 left-1/2 z-10 -translate-x-1/2 opacity-40"
         aria-hidden
       >
         <span className="hero-scroll-line block h-12 w-px bg-gradient-to-b from-base-content/50 to-transparent" />

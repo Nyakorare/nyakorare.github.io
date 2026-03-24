@@ -70,6 +70,21 @@
   animation: hero-scroll-line 2.5s ease-in-out infinite;
 }
 
+.hero-three-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.75;
+  mask-image: radial-gradient(circle at 28% 42%, black 0%, black 42%, transparent 78%);
+  -webkit-mask-image: radial-gradient(
+    circle at 28% 42%,
+    black 0%,
+    black 42%,
+    transparent 78%
+  );
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-scroll-line {
     animation: none;
@@ -194,8 +209,28 @@
 .about-bg-3d {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   overflow: hidden;
+}
+
+.about-three-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.72;
+  mask-image: radial-gradient(
+    circle at 62% 45%,
+    black 0%,
+    black 36%,
+    transparent 76%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle at 62% 45%,
+    black 0%,
+    black 36%,
+    transparent 76%
+  );
 }
 
 .about-3d-perspective {
