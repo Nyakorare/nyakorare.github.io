@@ -70,7 +70,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="about-section-3d relative isolate overflow-hidden border-y border-base-300 bg-base-100 py-12 sm:py-16 lg:py-24"
+      className="about-section-3d full-bleed viewport-section relative isolate overflow-hidden border-y border-base-300 bg-base-100 px-6 py-12 lg:px-10 sm:py-16 lg:py-24"
       aria-labelledby="about-heading"
     >
       <AboutThreeBackground />

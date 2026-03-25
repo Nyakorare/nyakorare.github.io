@@ -35,7 +35,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="py-12 sm:py-16 lg:py-24"
+      className="full-bleed viewport-section px-6 py-12 lg:px-10 sm:py-16 lg:py-24"
       aria-labelledby="projects-heading"
     >
       {detailProject ? (
@@ -47,7 +47,7 @@ export function Projects() {
       ) : null}
 
       <Reveal>
-        <div className="mb-8 max-w-lg sm:mb-10">
+        <div className="mx-auto mb-8 max-w-lg sm:mb-10">
           <h2
             id="projects-heading"
             className="section-heading-3d font-display text-3xl font-medium tracking-[-0.02em] sm:text-4xl"
@@ -60,144 +60,145 @@ export function Projects() {
         </div>
       </Reveal>
 
-      <ul className="grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
-        {visible.map((p, i) => {
-          const globalIndex = (page - 1) * PER_PAGE + i;
-          return (
-            <li key={`${p.title}-${globalIndex}`} className="flex h-full min-h-0">
-              <Reveal delayMs={i * 60} className="h-full w-full min-w-0">
-                <ProjectCard
-                  project={p}
-                  onOpenDetail={setDetailProject}
-                />
-              </Reveal>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="mx-auto max-w-content">
+        <ul className="grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+          {visible.map((p, i) => {
+            const globalIndex = (page - 1) * PER_PAGE + i;
+            return (
+              <li key={`${p.title}-${globalIndex}`} className="flex h-full min-h-0">
+                <Reveal delayMs={i * 60} className="h-full w-full min-w-0">
+                  <ProjectCard project={p} onOpenDetail={setDetailProject} />
+                </Reveal>
+              </li>
+            );
+          })}
+        </ul>
 
-      <Reveal>
-        <div
-          role="region"
-          aria-labelledby="uptime-heading"
-          className="elev-panel-soft mx-auto mt-8 flex max-w-xl flex-col gap-3 rounded-xl border border-base-300/80 bg-gradient-to-br from-base-100 to-base-200/40 p-3 sm:mt-10 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:p-4"
-        >
-          <div className="min-w-0 flex items-start gap-3">
-            <span
-              className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-primary/25 bg-primary/10 text-primary"
-              aria-hidden
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5"
-              >
-                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-              </svg>
-            </span>
-            <div>
-              <h3
-                id="uptime-heading"
-                className="font-display text-sm font-semibold tracking-tight text-base-content"
-              >
-                Project uptime
-              </h3>
-              <p className="mt-0.5 text-xs leading-snug text-base-content/60">
-                Live service status on UptimeRobot — opens in a new tab (embedding is
-                blocked by their site policy).
-              </p>
-            </div>
-          </div>
-          <a
-            href={site.uptimeStatusUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-sm btn-3d-outline shrink-0 rounded-full border-base-300 bg-base-100 px-4 font-medium normal-case hover:border-primary/40 hover:bg-primary/10 sm:min-h-10 sm:px-5"
+        <Reveal>
+          <div
+            role="region"
+            aria-labelledby="uptime-heading"
+            className="elev-panel-soft mx-auto mt-8 flex max-w-xl flex-col gap-3 rounded-xl border border-base-300/80 bg-gradient-to-br from-base-100 to-base-200/40 p-3 sm:mt-10 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:p-4"
           >
-            View status dashboard
-            <span aria-hidden className="ml-1">
-              ↗
-            </span>
-          </a>
-        </div>
-      </Reveal>
-
-      {showPagination ? (
-        <nav
-          className="mt-8 flex w-full flex-col gap-4 sm:mt-10 sm:flex-row sm:items-center sm:justify-between"
-          aria-label="Projects pagination"
-        >
-          <p className="text-center text-sm text-base-content/60 sm:text-left">
-            Showing{" "}
-            <span className="font-medium text-base-content">
-              {(page - 1) * PER_PAGE + 1}
-            </span>
-            –
-            <span className="font-medium text-base-content">
-              {Math.min(page * PER_PAGE, allProjects.length)}
-            </span>{" "}
-            of{" "}
-            <span className="font-medium text-base-content">
-              {allProjects.length}
-            </span>
-            <span className="sr-only">, </span>
-            <span className="hidden sm:inline"> · </span>
-            <span className="block sm:inline">Page {page} of {totalPages}</span>
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-end">
-            <button
-              type="button"
-              className="btn btn-sm btn-3d-outline min-w-[5.5rem] border-base-300 bg-base-100 sm:min-w-0"
-              onClick={goPrev}
-              disabled={page <= 1}
-              aria-disabled={page <= 1}
-            >
-              Previous
-            </button>
-            <div
-              className="flex flex-wrap justify-center gap-1.5"
-              role="group"
-              aria-label="Page numbers"
-            >
-              {Array.from({ length: totalPages }, (_, idx) => {
-                const n = idx + 1;
-                const active = n === page;
-                return (
-                  <button
-                    key={n}
-                    type="button"
-                    className={[
-                      "btn btn-sm min-h-9 min-w-9 px-0",
-                      active
-                        ? "btn-primary pointer-events-none"
-                        : "btn-ghost border border-transparent hover:border-base-300",
-                    ].join(" ")}
-                    onClick={() => setPage(n)}
-                    aria-label={`Page ${n}`}
-                    aria-current={active ? "page" : undefined}
-                  >
-                    {n}
-                  </button>
-                );
-              })}
+            <div className="min-w-0 flex items-start gap-3">
+              <span
+                className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-primary/25 bg-primary/10 text-primary"
+                aria-hidden
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-5 w-5"
+                >
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                </svg>
+              </span>
+              <div>
+                <h3
+                  id="uptime-heading"
+                  className="font-display text-sm font-semibold tracking-tight text-base-content"
+                >
+                  Project uptime
+                </h3>
+                <p className="mt-0.5 text-xs leading-snug text-base-content/60">
+                  Live service status on UptimeRobot — opens in a new tab (embedding
+                  is blocked by their site policy).
+                </p>
+              </div>
             </div>
-            <button
-              type="button"
-              className="btn btn-sm btn-3d-outline min-w-[5.5rem] border-base-300 bg-base-100 sm:min-w-0"
-              onClick={goNext}
-              disabled={page >= totalPages}
-              aria-disabled={page >= totalPages}
+            <a
+              href={site.uptimeStatusUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-sm btn-3d-outline shrink-0 rounded-full border-base-300 bg-base-100 px-4 font-medium normal-case hover:border-primary/40 hover:bg-primary/10 sm:min-h-10 sm:px-5"
             >
-              Next
-            </button>
+              View status dashboard
+              <span aria-hidden className="ml-1">
+                ↗
+              </span>
+            </a>
           </div>
-        </nav>
-      ) : null}
+        </Reveal>
+
+        {showPagination ? (
+          <nav
+            className="mt-8 flex w-full flex-col gap-4 sm:mt-10 sm:flex-row sm:items-center sm:justify-between"
+            aria-label="Projects pagination"
+          >
+            <p className="text-center text-sm text-base-content/60 sm:text-left">
+              Showing{" "}
+              <span className="font-medium text-base-content">
+                {(page - 1) * PER_PAGE + 1}
+              </span>
+              –
+              <span className="font-medium text-base-content">
+                {Math.min(page * PER_PAGE, allProjects.length)}
+              </span>{" "}
+              of{" "}
+              <span className="font-medium text-base-content">
+                {allProjects.length}
+              </span>
+              <span className="sr-only">, </span>
+              <span className="hidden sm:inline"> · </span>
+              <span className="block sm:inline">
+                Page {page} of {totalPages}
+              </span>
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-end">
+              <button
+                type="button"
+                className="btn btn-sm btn-3d-outline min-w-[5.5rem] border-base-300 bg-base-100 sm:min-w-0"
+                onClick={goPrev}
+                disabled={page <= 1}
+                aria-disabled={page <= 1}
+              >
+                Previous
+              </button>
+              <div
+                className="flex flex-wrap justify-center gap-1.5"
+                role="group"
+                aria-label="Page numbers"
+              >
+                {Array.from({ length: totalPages }, (_, idx) => {
+                  const n = idx + 1;
+                  const active = n === page;
+                  return (
+                    <button
+                      key={n}
+                      type="button"
+                      className={[
+                        "btn btn-sm min-h-9 min-w-9 px-0",
+                        active
+                          ? "btn-primary pointer-events-none"
+                          : "btn-ghost border border-transparent hover:border-base-300",
+                      ].join(" ")}
+                      onClick={() => setPage(n)}
+                      aria-label={`Page ${n}`}
+                      aria-current={active ? "page" : undefined}
+                    >
+                      {n}
+                    </button>
+                  );
+                })}
+              </div>
+              <button
+                type="button"
+                className="btn btn-sm btn-3d-outline min-w-[5.5rem] border-base-300 bg-base-100 sm:min-w-0"
+                onClick={goNext}
+                disabled={page >= totalPages}
+                aria-disabled={page >= totalPages}
+              >
+                Next
+              </button>
+            </div>
+          </nav>
+        ) : null}
+      </div>
     </section>
   );
 }

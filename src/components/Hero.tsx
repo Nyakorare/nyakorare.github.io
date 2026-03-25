@@ -10,11 +10,11 @@ type HeroProps = {
 export function Hero({ onOpenContact, onOpenCertifications }: HeroProps) {
   return (
     <section
-      className="relative flex min-h-[min(92vh,52rem)] flex-col justify-center pb-16"
+      className="full-bleed viewport-section relative flex flex-col justify-center px-6 pb-16 lg:px-10"
       aria-labelledby="hero-heading"
     >
       <HeroThreeBackground />
-      <div className="relative z-10 grid w-full max-w-5xl gap-10 lg:grid-cols-[1fr_minmax(0,22rem)] lg:items-center lg:gap-12 xl:grid-cols-[1fr_minmax(0,26rem)]">
+      <div className="relative z-10 mx-auto grid w-full max-w-5xl gap-10 lg:grid-cols-[1fr_minmax(0,22rem)] lg:items-center lg:gap-12 xl:grid-cols-[1fr_minmax(0,26rem)]">
         <div className="max-w-xl">
           <Reveal delayMs={50}>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-primary">

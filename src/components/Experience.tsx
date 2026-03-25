@@ -5,7 +5,7 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="relative overflow-hidden border-y border-base-300 py-12 sm:py-16 lg:py-24"
+      className="full-bleed viewport-section relative overflow-hidden border-y border-base-300 px-6 py-12 lg:px-10 sm:py-16 lg:py-24"
       aria-labelledby="experience-heading"
     >
       <div
