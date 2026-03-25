@@ -57,6 +57,11 @@
   .viewport-section {
     min-height: 100svh;
   }
+
+  .text-align-justify {
+    text-align: justify;
+    text-justify: inter-word;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -96,6 +101,14 @@
     black 42%,
     transparent 78%
   );
+}
+
+.page-three-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.45;
 }
 
 @media (prefers-reduced-motion: reduce) {

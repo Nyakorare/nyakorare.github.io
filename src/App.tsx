@@ -7,6 +7,7 @@ import { Experience } from "./components/Experience";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
+import { HeroThreeBackground } from "./components/HeroThreeBackground";
 import { Projects } from "./components/Projects";
 
 export default function App() {
@@ -30,7 +31,10 @@ export default function App() {
         open={certificationsOpen}
         onClose={() => setCertificationsOpen(false)}
       />
-      <main id="main" className="portfolio-scene pt-28 sm:pt-[4.25rem]">
+      <div className="page-three-bg" aria-hidden>
+        <HeroThreeBackground />
+      </div>
+      <main id="main" className="portfolio-scene relative z-10 pt-28 sm:pt-[4.25rem]">
         <div className="mx-auto max-w-content px-6 lg:px-10">
           <Hero
             onOpenContact={() => setContactOpen(true)}

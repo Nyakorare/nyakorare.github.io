@@ -85,12 +85,12 @@ export const site = {
     roles: [
       "QA Software Specialist",
       "QA Automation Specialist",
-      "Roblox game developer",
       "AI developer",
       "Power Tools developer",
+      "Interactive experiences developer",
     ],
     intro:
-      "I focus on quality engineering, test automation, and reliable delivery across web and business apps. I work with Microsoft Power Platform, modern JavaScript stacks, and Roblox Studio — from exploratory testing to scripted automation and shipped experiences.",
+      "I focus on quality engineering, test automation, and reliable delivery across web and business apps. I work with Microsoft Power Platform and modern JavaScript stacks — from exploratory testing to scripted automation and shipped experiences.",
     skills: [
       "C",
       "C++",

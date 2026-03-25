@@ -1,6 +1,6 @@
 import { Reveal } from "./Reveal";
 import { site } from "../site";
-import { HeroThreeBackground } from "./HeroThreeBackground";
+import { AboutThreeBackground } from "./AboutThreeBackground";
 
 type HeroProps = {
   onOpenContact: () => void;
@@ -13,7 +13,7 @@ export function Hero({ onOpenContact, onOpenCertifications }: HeroProps) {
       className="full-bleed viewport-section relative flex flex-col justify-center px-6 pb-16 lg:px-10"
       aria-labelledby="hero-heading"
     >
-      <HeroThreeBackground />
+      <AboutThreeBackground />
       <div className="relative z-10 mx-auto grid w-full max-w-5xl gap-10 lg:grid-cols-[1fr_minmax(0,22rem)] lg:items-center lg:gap-12 xl:grid-cols-[1fr_minmax(0,26rem)]">
         <div className="max-w-xl">
           <Reveal delayMs={50}>

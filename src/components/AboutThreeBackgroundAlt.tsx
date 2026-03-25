@@ -4,7 +4,6 @@ import {
   BufferGeometry,
   Color,
   Float32BufferAttribute,
-  Group,
   IcosahedronGeometry,
   Mesh,
   MeshBasicMaterial,
@@ -16,26 +15,22 @@ import {
 } from "three";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
-const SPARK_COUNT = 190;
+const PARTICLE_COUNT = 420;
 
-export function AboutThreeBackground() {
+export function AboutThreeBackgroundAlt() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas || prefersReducedMotion) {
-      return;
-    }
+    if (!canvas || prefersReducedMotion) return;
 
     const section = canvas.closest("section");
-    if (!(section instanceof HTMLElement)) {
-      return;
-    }
+    if (!(section instanceof HTMLElement)) return;
 
     const scene = new Scene();
-    const camera = new PerspectiveCamera(52, 1, 0.1, 120);
-    camera.position.set(0, 0, 16);
+    const camera = new PerspectiveCamera(50, 1, 0.1, 120);
+    camera.position.set(0, 0, 14);
 
     const renderer = new WebGLRenderer({
       canvas,
@@ -46,49 +41,51 @@ export function AboutThreeBackground() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
 
-    const orbGroup = new Group();
-    scene.add(orbGroup);
-
-    const orbGeometry = new IcosahedronGeometry(4, 1);
-    const orbMaterial = new MeshBasicMaterial({
-      color: new Color("#7f79ff"),
+    const coreGeometry = new IcosahedronGeometry(3.6, 2);
+    const coreMaterial = new MeshBasicMaterial({
+      color: new Color("#22c55e"),
       wireframe: true,
       transparent: true,
-      opacity: 0.22,
+      opacity: 0.18,
     });
-    const orb = new Mesh(orbGeometry, orbMaterial);
-    orb.position.set(0, 0.1, 0);
-    orbGroup.add(orb);
+    const core = new Mesh(coreGeometry, coreMaterial);
+    scene.add(core);
 
-    const sparkGeometry = new BufferGeometry();
-    const sparkPositions = new Float32Array(SPARK_COUNT * 3);
-    for (let i = 0; i < SPARK_COUNT; i += 1) {
+    const particlesGeometry = new BufferGeometry();
+    const positions = new Float32Array(PARTICLE_COUNT * 3);
+    const sizes = new Float32Array(PARTICLE_COUNT);
+
+    for (let i = 0; i < PARTICLE_COUNT; i += 1) {
       const idx = i * 3;
-      sparkPositions[idx] = (Math.random() - 0.5) * 24;
-      sparkPositions[idx + 1] = (Math.random() - 0.5) * 12;
-      sparkPositions[idx + 2] = (Math.random() - 0.5) * 10;
+      // Spread more horizontally than vertically for a “nebula band” look.
+      positions[idx] = (Math.random() - 0.5) * 28;
+      positions[idx + 1] = (Math.random() - 0.5) * 14;
+      positions[idx + 2] = (Math.random() - 0.5) * 14;
+      sizes[i] = 0.032 + Math.random() * 0.04;
     }
-    sparkGeometry.setAttribute(
+
+    particlesGeometry.setAttribute(
       "position",
-      new Float32BufferAttribute(sparkPositions, 3),
+      new Float32BufferAttribute(positions, 3),
     );
 
-    const sparkMaterial = new PointsMaterial({
-      color: new Color("#8dd8ff"),
-      size: 0.048,
+    const particlesMaterial = new PointsMaterial({
+      color: new Color("#34d399"),
+      size: 0.05,
       transparent: true,
-      opacity: 0.52,
+      opacity: 0.55,
       depthWrite: false,
       blending: AdditiveBlending,
     });
-    const sparks = new Points(sparkGeometry, sparkMaterial);
-    orbGroup.add(sparks);
+
+    const particles = new Points(particlesGeometry, particlesMaterial);
+    scene.add(particles);
 
     let targetX = 0;
     let targetY = 0;
     let smoothX = 0;
     let smoothY = 0;
-    let burst = 0;
+    let pulse = 0;
 
     const setSize = () => {
       const width = section.clientWidth;
@@ -109,12 +106,10 @@ export function AboutThreeBackground() {
     const onPointerMove = (event: PointerEvent) => {
       toLocalPointer(event.clientX, event.clientY);
     };
-
     const onPointerDown = (event: PointerEvent) => {
       toLocalPointer(event.clientX, event.clientY);
-      burst = 1;
+      pulse = 1;
     };
-
     const onPointerLeave = () => {
       targetX = 0;
       targetY = 0;
@@ -126,36 +121,46 @@ export function AboutThreeBackground() {
     section.addEventListener("pointerdown", onPointerDown);
     section.addEventListener("pointerleave", onPointerLeave);
 
+    const ro = new ResizeObserver(() => setSize());
+    ro.observe(section);
+
     let rafId = 0;
     const animate = () => {
-      smoothX += (targetX - smoothX) * 0.055;
-      smoothY += (targetY - smoothY) * 0.055;
-      burst *= 0.92;
+      smoothX += (targetX - smoothX) * 0.06;
+      smoothY += (targetY - smoothY) * 0.06;
+      pulse *= 0.92;
 
-      orbGroup.rotation.y += 0.0022 + smoothX * 0.008;
-      orbGroup.rotation.x += 0.001 + -smoothY * 0.005;
-      orbGroup.position.x = smoothX * 1.1;
-      orbGroup.position.y = -smoothY * 0.75;
+      core.rotation.y += 0.0032 + smoothX * 0.01;
+      core.rotation.x += 0.0015 + -smoothY * 0.008;
+      core.position.x = smoothX * 0.75;
+      core.position.y = -smoothY * 0.45;
 
-      sparkMaterial.opacity = 0.52 + burst * 0.22;
-      sparkMaterial.size = 0.048 + burst * 0.03;
-      orbMaterial.opacity = 0.22 + burst * 0.15;
+      particles.rotation.y += 0.0016 + smoothX * 0.006;
+      particles.rotation.x += 0.0007 + -smoothY * 0.004;
+      particles.position.x = smoothX * 0.5;
+      particles.position.y = -smoothY * 0.28;
+
+      particlesMaterial.opacity = 0.55 + pulse * 0.18;
+      particlesMaterial.size = 0.05 + pulse * 0.05;
+      coreMaterial.opacity = 0.18 + pulse * 0.12;
 
       renderer.render(scene, camera);
       rafId = window.requestAnimationFrame(animate);
     };
+
     rafId = window.requestAnimationFrame(animate);
 
     return () => {
       window.cancelAnimationFrame(rafId);
       window.removeEventListener("resize", setSize);
+      ro.disconnect();
       section.removeEventListener("pointermove", onPointerMove);
       section.removeEventListener("pointerdown", onPointerDown);
       section.removeEventListener("pointerleave", onPointerLeave);
-      orbGeometry.dispose();
-      orbMaterial.dispose();
-      sparkGeometry.dispose();
-      sparkMaterial.dispose();
+      coreGeometry.dispose();
+      coreMaterial.dispose();
+      particlesGeometry.dispose();
+      particlesMaterial.dispose();
       renderer.dispose();
     };
   }, [prefersReducedMotion]);
@@ -166,3 +171,4 @@ export function AboutThreeBackground() {
     </div>
   );
 }
+

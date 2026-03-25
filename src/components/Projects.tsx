@@ -47,7 +47,7 @@ export function Projects() {
       ) : null}
 
       <Reveal>
-        <div className="mx-auto mb-8 max-w-lg sm:mb-10">
+        <div className="mx-auto mb-8 max-w-lg text-center sm:mb-10">
           <h2
             id="projects-heading"
             className="section-heading-3d font-display text-3xl font-medium tracking-[-0.02em] sm:text-4xl"
