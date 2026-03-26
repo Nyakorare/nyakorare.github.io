@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -20,10 +20,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     # Keep builds aligned with deployment branch.
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.actor != 'github-actions[bot]'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -37,20 +39,19 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
+      - name: Sync docs/ from dist/
+        run: node scripts/sync-docs.mjs
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    # Extra guard: only deploy from the `main` branch.
-    if: github.ref == 'refs/heads/main'
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Commit and push docs/
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -n "$(git status --porcelain docs)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add -A docs
+            git commit -m "Sync docs from dist [skip ci]"
+            git push
+          else
+            echo "docs/ unchanged; nothing to push"
+          fi
