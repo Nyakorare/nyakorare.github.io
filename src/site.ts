@@ -137,7 +137,7 @@ export const site = {
   experience: [
     {
       company: "Meralco",
-      role: "IT Intern",
+      role: "IT Intern - CRS Dept. Tutuban Branch",
       dateRange: "Jan 12, 2026 – Present",
       duration: "2 months",
       image: "/images/meralco.png",
