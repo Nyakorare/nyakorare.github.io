@@ -222,6 +222,7 @@ export const site = {
       href: "https://github.com/Nyakorare/Learn-Simple-Power-Automate",
       label: "Learn Power Automate repository on GitHub (opens in new tab)",
       tags: ["Open Source", "Power Automate", "Vite", "Tailwind", "HTML"],
+      image: "/images/PA.png",
     },
     {
       title: "Roblox Projects",
