@@ -67,13 +67,13 @@ export function ProjectCard({ project: p, onOpenDetail }: ProjectCardProps) {
       />
 
       {hasCover ? (
-        <div className="relative z-[1] h-40 shrink-0 overflow-hidden border-b border-base-300/80 bg-base-200/40 sm:h-44">
+        <div className="relative z-[1] flex h-40 shrink-0 items-center justify-center overflow-hidden border-b border-base-300/80 bg-base-200/40 p-3 sm:h-44 sm:p-4">
           <img
             src={p.image}
             alt=""
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover"
+            className="max-h-full max-w-full object-contain object-center"
           />
         </div>
       ) : null}

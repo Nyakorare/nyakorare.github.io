@@ -95,17 +95,13 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
           <div className="relative -mx-6 -mt-2 mb-6 sm:-mx-8">
             <div className="overflow-hidden rounded-2xl border border-base-300/70 bg-gradient-to-br from-base-200/80 to-base-300/40 p-1.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_16px_48px_-16px_rgba(0,0,0,0.45)] ring-1 ring-base-content/[0.06] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05),0_20px_50px_-12px_rgba(0,0,0,0.65)]">
               <div className="relative overflow-hidden rounded-xl bg-base-200/30">
-                <div className="aspect-[16/9] w-full sm:aspect-[2/1]">
+                <div className="flex aspect-[16/9] w-full min-h-0 items-center justify-center p-4 sm:aspect-[2/1] sm:p-6">
                   <img
                     src={activeProject.image}
                     alt=""
-                    className="h-full w-full object-cover object-center"
+                    className="max-h-full max-w-full object-contain object-center"
                   />
                 </div>
-                <div
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-base-100/90 via-base-100/10 to-transparent opacity-95 dark:from-base-100/95"
-                  aria-hidden
-                />
               </div>
             </div>
           </div>

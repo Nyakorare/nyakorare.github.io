@@ -215,6 +215,15 @@ export const site = {
       image: "/images/adomees.png",
     },
     {
+      title: "Learn Power Automate",
+      description:
+        "Fan-made learning guide for Microsoft Power Automate — structured lessons and quizzes on a static site (Vite, Tailwind, DaisyUI), published via GitHub Pages.",
+      meta: "Web · 2026",
+      href: "https://github.com/Nyakorare/Learn-Simple-Power-Automate",
+      label: "Learn Power Automate repository on GitHub (opens in new tab)",
+      tags: ["Open Source", "Power Automate", "Vite", "Tailwind", "HTML"],
+    },
+    {
       title: "Roblox Projects",
       description:
         "Collection of my Roblox experiences. Open this card to browse each project one by one.",
